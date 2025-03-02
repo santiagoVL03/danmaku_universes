@@ -31,4 +31,8 @@ class PlayerEntity {
       lifePoints += element.lifePoints;
     });
   }
+
+  void removeCard (CardEntity card) {
+    handPlayer.remove(card);
+  }
 }
