@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "909003544924",
+    "project_id": "danmaku-2772d",
+    "storage_bucket": "danmaku-2772d.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:909003544924:android:1bba459b62fb0053fec999",
+        "android_client_info": {
+          "package_name": "com.example.danmaku_universes"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDGSyEz1OHcPvlmOhwHXYtXNf4skPr2AyM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

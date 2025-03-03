@@ -7,11 +7,11 @@ class HeroCardWidget extends StatelessWidget {
   final String imageRoute;
 
   const HeroCardWidget({
-    Key? key,
+    super.key,
     required this.name,
     required this.description,
     required this.imageRoute,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

@@ -2,7 +2,7 @@ import 'package:danmaku_universes/presentation/widgets/hero_card_widget.dart';
 import 'package:flutter/material.dart';
 
 class GamePage extends StatelessWidget {
-  const GamePage({Key? key}) : super(key: key);
+  const GamePage({super.key});
 
   @override
   Widget build(BuildContext context) {

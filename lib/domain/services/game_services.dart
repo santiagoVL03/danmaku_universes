@@ -8,10 +8,10 @@ class GameServices implements IGameService {
 
   GameServices(this.game);
 
+  @override
   void startGame() {
-    game.players.forEach((player) {
-      player.getCards(_drawCards(), _drawHeros());
-    });
+    for (var player in game.players) {
+    }
   }
 
   List<CardEntity> _drawCards(int n) {
@@ -30,9 +30,10 @@ class GameServices implements IGameService {
     return heros;
   }
   
+  @override
   void endGame () {
-    game.players.forEach((player) {
-      print("Se culmino el juego");
-    });
+    for (var player in game.players) {
+      print("Se culmino el juego player: ${player.namePlayer}");  
+    }
   }
 }

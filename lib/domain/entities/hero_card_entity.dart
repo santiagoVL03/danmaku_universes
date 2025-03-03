@@ -8,15 +8,10 @@ class HeroCardEntity extends CardEntity{
     required this.specialAbility,
     required this.lifePoints,
     required this.state,
-    required int idCard,
-    required String name,
-    required String description,
-    required String imageUrl
-  }) : super(
-    idCard: idCard,
-    name: name,
-    description: description,
-    imageUrl: imageUrl
-  );
+    required super.idCard,
+    required super.name,
+    required super.description,
+    required super.imageUrl
+  });
   
 }

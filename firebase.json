@@ -1,0 +1,35 @@
+{
+    "emulators": {
+        "singleProjectMode": true,
+        "firestore": {
+            "port": 8090
+        },
+        "ui": {
+            "enabled": true,
+            "port": 8099
+        }
+    },
+    "flutter": {
+        "platforms": {
+            "android": {
+                "default": {
+                    "projectId": "danmaku-2772d",
+                    "appId": "1:909003544924:android:1bba459b62fb0053fec999",
+                    "fileOutput": "android/app/google-services.json"
+                }
+            },
+            "dart": {
+                "lib/firebase_options.dart": {
+                    "projectId": "danmaku-2772d",
+                    "configurations": {
+                        "android": "1:909003544924:android:1bba459b62fb0053fec999",
+                        "ios": "1:909003544924:ios:790f894aaf43fecbfec999",
+                        "macos": "1:909003544924:ios:790f894aaf43fecbfec999",
+                        "web": "1:909003544924:web:864b36dc66b6f418fec999",
+                        "windows": "1:909003544924:web:cb9d63d9a6d94161fec999"
+                    }
+                }
+            }
+        }
+    }
+}

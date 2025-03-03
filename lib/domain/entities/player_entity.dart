@@ -27,9 +27,9 @@ class PlayerEntity {
   void getCards(List<CardEntity> cards, List<HeroCardEntity> heroCards) {
     handPlayer.addAll(cards);
     heroCard.addAll(heroCards);
-    heroCards.forEach((element) {
+    for (var element in heroCards) {
       lifePoints += element.lifePoints;
-    });
+    }
   }
 
   void removeCard (CardEntity card) {
