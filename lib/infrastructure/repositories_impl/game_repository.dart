@@ -1,6 +1,6 @@
-import 'package:danmaku_universes/domain/repositories/game_repository.dart';
+import 'package:danmaku_universes/domain/repositories/i_game_repository.dart';
 
-class GameRepositoryImplementation implements GameRepository {
+class GameRepository implements IGameRepository {
   @override
   Future<void> createGame() async {
     print ('Game created');

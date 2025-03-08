@@ -1,7 +1,7 @@
 import 'package:danmaku_universes/domain/entities/game_entity.dart';
 import 'package:danmaku_universes/domain/entities/card_entity.dart';
 import 'package:danmaku_universes/domain/entities/hero_card_entity.dart';
-import 'package:danmaku_universes/domain/services/igame_services.dart';
+import 'package:danmaku_universes/domain/services/i_game_services.dart';
 
 class GameServices implements IGameService {
   GameEntity game;

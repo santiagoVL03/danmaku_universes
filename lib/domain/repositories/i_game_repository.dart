@@ -1,4 +1,4 @@
-abstract class GameRepository {
+abstract class IGameRepository {
   Future<void> createGame();
   Future<void> joinGame(String gameId);
   Future<void> startGame(String gameId);
