@@ -1,46 +1,26 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:danmaku_universes/domain/entities/user_entity.dart';
 import 'package:danmaku_universes/domain/repositories/i_user_repository.dart';
+import 'package:danmaku_universes/infrastructure/DTOs/user_dto.dart';
+import 'package:danmaku_universes/infrastructure/datasources/user_datasources.dart';
 
 class UserRepository implements IUserRepository {
-  final FirebaseFirestore _firestore = FirebaseFirestore.instance;
+  UserDatasources _userDatasources = UserDatasources();
   @override
   Future<(bool, String, UserEntity?)> authUser(
     String username,
     String password,
   ) async {
-    try {
-      var querySnapshot =
-          await _firestore
-              .collection('users')
-              .where('username', isEqualTo: username)
-              .where('password', isEqualTo: password)
-              .limit(1)
-              .get();
-      if (querySnapshot.docs.isNotEmpty) {
-        var user = querySnapshot.docs.first;
-        return (
-          true,
-          "",
-          UserEntity(
-            id: user.id,
-            username: user['username'],
-            password: user['password'],
-            email: user['email'],
-            name: user['name'],
-          ),
-        );
-      } else {
-        return (false, "User not found", null);
-      }
-    } catch (e) {
-      return (false, "An error occurred: $e", null);
+    final userdto = await _userDatasources.getUser(username: username);
+    if (userdto.$1 == false || userdto.$3 == null) {
+      return (false, "User not found", null);
     }
+    final userent = userdto.$3!.toEntity();
+    return (true, "", userent);
   }
 
   @override
-  Future<UserEntity> getUser(String userId) {
-    print("User retrieved");
+  Future<UserEntity> getUser(String userId) async {
     return Future.value(
       UserEntity(
         id: "1",
@@ -50,5 +30,12 @@ class UserRepository implements IUserRepository {
         name: "",
       ),
     );
+  }
+
+  @override
+  Future<(bool, String)> createUser(UserEntity user) async {
+    // Create user
+    var newuserdto = UserDto.fromEntity(user);
+    return await _userDatasources.createUser(newuserdto.toModel());
   }
 }

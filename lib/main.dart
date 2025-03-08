@@ -1,3 +1,4 @@
+import 'package:danmaku_universes/presentation/pages/signup_page.dart';
 import 'package:flutter/material.dart';
 import 'presentation/pages/game_page.dart';
 import 'presentation/pages/home_page.dart';
@@ -24,6 +25,7 @@ class MyApp extends StatelessWidget {
       title: 'Danmaku Universes',
       routes: {
         '/game': (context) => const GamePage(),
+        '/signup': (context) => const SignupPage(),
       },
       theme: ThemeData(
         // This is the theme of your application.

@@ -6,4 +6,5 @@ abstract class IUserRepository {
     String password,
   );
   Future<UserEntity> getUser(String userId);
+  Future<(bool, String)> createUser(UserEntity user);
 }
