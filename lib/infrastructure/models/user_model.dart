@@ -1,24 +1,24 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:danmaku_universes/domain/entities/user_entity.dart';
 
-class UserModel extends UserEntity {
-  UserModel({
-    required String id,
-    required String? name,
-    required String username,
-    required String? email,
-    required String password,
-  }) : super(
-         id: id,
-         name: name,
-         username: username,
-         email: email,
-         password: password,
-       );
+class UserModel {
+  final String? id;
+  final String? name;
+  final String username;
+  final String? email;
+  final String password;
 
-  factory UserModel.fromJson(Map<String, dynamic> json) {
+  UserModel({
+    this.id, // Se agrega el ID del documento
+    this.name,
+    required this.username,
+    this.email,
+    required this.password,
+  });
+  
+  factory UserModel.fromJson(Map<String, dynamic> json, String id) {
     return UserModel(
-      id: json['id'] ?? '',
+      id: id, // Se asigna el ID si está disponible      
       name: json['name'] ?? '',
       username: json['username'] ?? '',
       email: json['email'] ?? '',
@@ -28,7 +28,6 @@ class UserModel extends UserEntity {
 
   Map<String, dynamic> toJson() {
     return {
-      'id': id,
       if (name != null) 'name': name,
       'username': username,
       if (email != null) 'email': email,
@@ -39,7 +38,6 @@ class UserModel extends UserEntity {
   factory UserModel.fromDocumentSnapshot(DocumentSnapshot doc) {
     final data = doc.data() as Map<String, dynamic>? ?? {};
     return UserModel(
-      id: doc.id, // Firestore ya asigna un ID único a cada documento
       name: data['name'] ?? '',
       username: data['username'] ?? '',
       email: data['email'] ?? '',

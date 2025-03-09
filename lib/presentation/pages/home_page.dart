@@ -1,5 +1,4 @@
 import 'package:danmaku_universes/application/usecases/auth_user_usecase.dart';
-import 'package:danmaku_universes/domain/entities/user_entity.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatefulWidget {
@@ -15,20 +14,22 @@ class _HomePageState extends State<HomePage> {
   final AuthUserUsecase _authUser = AuthUserUsecase();
   String? _errorMessage;
 
-  void _checkUser() {
+  void _checkUser() async {
     String username = _usernameController.text.trim();
     String password = _passwordController.text.trim();
-    UserEntity user = UserEntity(
-      id: "1",
-      username: username,
-      password: password,
-    );
+    
     if (username.isEmpty || password.isEmpty) {
       setState(() {
         _errorMessage = 'Username and password cannot be empty';
       });
     } else {
-      _authUser.execute(username, password);
+      var authUser = await _authUser.execute(username, password);
+      if (authUser.$1 == false) {
+        setState(() {
+          _errorMessage = authUser.$2;
+        });
+        return;
+      }
       setState(() {
         _errorMessage = null;
       });
@@ -89,6 +90,13 @@ class _HomePageState extends State<HomePage> {
                       ),
                     ),
                   ),
+                  if (_errorMessage != null) ...[
+                    const SizedBox(height: 10),
+                    Text(
+                      _errorMessage!,
+                      style: const TextStyle(color: Colors.red),
+                    ),
+                  ],
                   if (_errorMessage != null) ...[
                     const SizedBox(height: 10),
                     Text(

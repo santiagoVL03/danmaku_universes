@@ -20,7 +20,7 @@ class GamePage extends StatelessWidget {
             'como maximo simultaneamente '
             'Los ataques de Arya no pueden atravesar '
             'Armaduras. Pero puede jugar cualquier carta '
-            'Danmaku __ como Desmantelar ', imageRoute: 'heros/arya_stark.jpg'),
+            'Danmaku __ como Desmantelar ', imageRoute: 'heros/arya_stark.jpeg'),
         ),
       ),
     );

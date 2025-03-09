@@ -29,7 +29,8 @@ class UserDatasources {
     String? id,
   }) async {
     try {
-      QuerySnapshot querySnapshot;
+      DocumentSnapshot? documentSnapshot;
+      QuerySnapshot? querySnapshot;
       if (username != null) {
         querySnapshot =
             await _firestore
@@ -37,26 +38,25 @@ class UserDatasources {
                 .where('username', isEqualTo: username)
                 .limit(1)
                 .get();
+        if (querySnapshot.docs.isEmpty) {
+          return (false, "User not found", null);
+        } else {
+          documentSnapshot = querySnapshot.docs.first;
+          return (true, "", UserDto.fromModel(UserModel.fromDocumentSnapshot(documentSnapshot)));
+        }
       } else if (id != null) {
-        querySnapshot =
+        documentSnapshot =
             await _firestore
                 .collection('user')
-                .where('id_users', isEqualTo: id)
-                .limit(1)
+                .doc(id)
                 .get();
+        if (!documentSnapshot.exists) {
+          return (false, "User not found", null);
+        } else {
+          return (true, "", UserDto.fromModel(UserModel.fromDocumentSnapshot(documentSnapshot)));
+        }
       } else {
         return (false, "You must to pass at least an argument", null);
-      }
-      if (querySnapshot.docs.isNotEmpty) {
-        final userModel = UserModel.fromDocumentSnapshot(querySnapshot.docs.first);
-        final userDTO = UserDto.fromModel(userModel);
-        return (
-          true,
-          "",
-          userDTO,
-        );
-      } else {
-        return (false, "User not found", null);
       }
     } catch (e) {
       return (false, "$e", null);

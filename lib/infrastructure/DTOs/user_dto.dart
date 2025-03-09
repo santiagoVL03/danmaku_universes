@@ -2,23 +2,23 @@ import 'package:danmaku_universes/domain/entities/user_entity.dart';
 import 'package:danmaku_universes/infrastructure/models/user_model.dart';
 
 class UserDto {
-  final String id;
+  final String? id;
   final String? name;
   final String username;
   final String? email;
   final String password;
 
   UserDto({
-    required this.id,
-    required this.name,
+    this.id,
+    this.name,
     required this.username,
-    required this.email,
+    this.email,
     required this.password,
   });
 
   UserEntity toEntity() {
     return UserEntity(
-      id: id,
+      id: id ?? '',
       name: name,
       username: username,
       email: email,
@@ -38,7 +38,6 @@ class UserDto {
 
   UserModel toModel() {
     return UserModel(
-      id: id,
       name: name,
       username: username,
       email: email,

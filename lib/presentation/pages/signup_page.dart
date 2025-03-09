@@ -1,4 +1,5 @@
 import 'package:danmaku_universes/application/usecases/create_user_usecase.dart';
+import 'package:danmaku_universes/domain/entities/user_entity.dart';
 import 'package:flutter/material.dart';
     
 class SignupPage extends StatefulWidget {
@@ -15,7 +16,7 @@ class _SignupPageState extends State<SignupPage> {
   final TextEditingController _nameController = TextEditingController();
   final CreateUserUsecase _createUser = CreateUserUsecase();
   String? _errorMessage;
-  void _createAccount() {
+  void _createAccount() async {
     // Create account
     String username = _usernameController.text.trim();
     String password = _passwordController.text.trim();
@@ -27,8 +28,19 @@ class _SignupPageState extends State<SignupPage> {
         _errorMessage = 'Username and password cannot be empty';
       });
     } else {
-      // Create account
-      Navigator.pushNamed(context, '/game');
+      var checkUser = await _createUser.execute(
+        username: username,
+        password: password,
+        email: email,
+        name: name,
+      );
+      if (checkUser.$1 == false) {
+        setState(() {
+          _errorMessage = checkUser.$2;
+        });
+        return;
+      }
+      Navigator.pushNamed(context, '/');
     }
   }
 
@@ -78,7 +90,7 @@ class _SignupPageState extends State<SignupPage> {
                       decoration: const InputDecoration(
                         labelText: 'Enter your password',
                         border: InputBorder.none,
-                        prefixIcon: Icon(Icons.account_balance)
+                        prefixIcon: Icon(Icons.lock)
                       ),
                     ),
                   ),
@@ -110,7 +122,7 @@ class _SignupPageState extends State<SignupPage> {
                       decoration: const InputDecoration(
                         labelText: 'Enter your Name',
                         border: InputBorder.none,
-                        prefixIcon: Icon(Icons.email)
+                        prefixIcon: Icon(Icons.person_add_alt_rounded),
                       ),
                     ),
                   ),

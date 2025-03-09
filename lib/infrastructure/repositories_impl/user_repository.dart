@@ -33,9 +33,12 @@ class UserRepository implements IUserRepository {
   }
 
   @override
-  Future<(bool, String)> createUser(UserEntity user) async {
+  Future<(bool, String)> createUser(UserDto user) async {
     // Create user
-    var newuserdto = UserDto.fromEntity(user);
-    return await _userDatasources.createUser(newuserdto.toModel());
+    var checkUser = await _userDatasources.getUser(username: user.username);
+    if (checkUser.$1 == true) {
+      return (false, "User already exists, please try another username or login");
+    }
+    return await _userDatasources.createUser(user.toModel());
   }
 }
