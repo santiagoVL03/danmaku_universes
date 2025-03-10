@@ -1,4 +1,3 @@
-import 'package:danmaku_universes/domain/entities/user_entity.dart';
 import 'package:danmaku_universes/infrastructure/DTOs/user_dto.dart';
 import 'package:danmaku_universes/infrastructure/repositories_impl/user_repository.dart';
 

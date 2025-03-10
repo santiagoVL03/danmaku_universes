@@ -3,7 +3,7 @@ import 'package:danmaku_universes/domain/entities/user_entity.dart';
 import 'package:flutter/material.dart';
     
 class SignupPage extends StatefulWidget {
-  const SignupPage({Key? key}) : super(key: key);
+  const SignupPage({super.key});
 
   @override
   _SignupPageState createState() => _SignupPageState();

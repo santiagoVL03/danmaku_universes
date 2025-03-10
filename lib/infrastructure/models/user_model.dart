@@ -1,5 +1,4 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:danmaku_universes/domain/entities/user_entity.dart';
 
 class UserModel {
   final String? id;

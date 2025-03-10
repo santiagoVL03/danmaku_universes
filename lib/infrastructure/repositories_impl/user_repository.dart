@@ -5,7 +5,7 @@ import 'package:danmaku_universes/infrastructure/DTOs/user_dto.dart';
 import 'package:danmaku_universes/infrastructure/datasources/user_datasources.dart';
 
 class UserRepository implements IUserRepository {
-  UserDatasources _userDatasources = UserDatasources();
+  final UserDatasources _userDatasources = UserDatasources();
   @override
   Future<(bool, String, UserEntity?)> authUser(
     String username,
