@@ -1,4 +1,3 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:danmaku_universes/domain/entities/user_entity.dart';
 import 'package:danmaku_universes/domain/repositories/i_user_repository.dart';
 import 'package:danmaku_universes/infrastructure/DTOs/user_dto.dart';
